@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockEase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <p class="brand">StockEase</p>
+            <nav>
+                <ul>
+                    <li id="li-dashboard" class="active">
+                        <a href="#" id="linkDashboard">Dashboard</a>
+                    </li>
+                    <li id="li-semua">
+                        <a href="#" id="linkSemuaProduk">Semua Produk</a>
+                    </li>
+                    <li id="li-supplier">
+                        <a href="#" id="linkSupplier">Supplier</a>
+                    </li>
+                    <li id="li-manage-stok">
+                        <a href="#" id="linkManageStok">Manage Stok</a>
+                    </li>
+                    <li id="li-riwayat">
+                        <a href="#" id="linkRiwayat">Riwayat Transaksi</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+
+            <!-- ===== SECTION 1: DASHBOARD ===== -->
+            <section id="menuDashboard" class="section">
+                <div class="page-header">
+                    <h2>Dashboard</h2>
+                    <p>Ringkasan Inventaris PT XYZ</p>
+                </div>
+
+                <div id="alertStok" class="alert">
+                    <p id="teksAlert">Stok inventaris aman!</p>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <p class="stat-label">Total Produk</p>
+                        <p class="stat-value" id="statTotalProduk">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Total Nilai Stok</p>
+                        <p class="stat-value" id="statNilaiStok">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Stok Menipis</p>
+                        <p class="stat-value" id="statStokMenipis">0 Produk</p>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <select id="filterKategori">
+                        <option value="">Semua Kategori</option>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                        <option value="kebersihan">Kebersihan</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                    <select id="filterSupplier">
+                        <option value="">Semua Supplier</option>
+                    </select>
+                    <select id="filterStatus">
+                        <option value="">Semua Status</option>
+                        <option value="aman">Stok Aman</option>
+                        <option value="menipis">Stok Menipis</option>
+                    </select>
+                    <button id="btnResetFilter">Reset Filter</button>
+                </div>
+
+                <div class="tabel-wrap">
+                    <table id="tabelProdukDashboard">
+                        <thead>
+                            <tr>
+                                <th>Nama Produk</th>
+                                <th>Supplier</th>
+                                <th>Kategori</th>
+                                <th>Stok</th>
+                                <th>Harga Satuan</th>
+                                <th>Nilai Stok</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelBodyDashboard"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ===== SECTION 2: SEMUA PRODUK ===== -->
+            <section id="menuSemuaProduk" class="section" style="display:none;">
+                <div class="page-header">
+                    <h2>Semua Produk</h2>
+                    <p>Daftar lengkap seluruh produk inventaris</p>
+                </div>
+                <div class="filter-bar">
+                    <input type="text" id="searchInput" placeholder="Cari nama produk...">
+                    <button id="btnResetSearch">Reset Pencarian</button>
+                </div>
+                <div class="tabel-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama Produk</th>
+                                <th>Supplier</th>
+                                <th>Kategori</th>
+                                <th>Stok</th>
+                                <th>Harga Satuan</th>
+                                <th>Stok Minimal</th>
+                                <th>Nilai Stok</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelBodySemua"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ===== SECTION 3: SUPPLIER ===== -->
+            <section id="menuSupplier" class="section" style="display:none;">
+                <div class="page-header">
+                    <h2>Supplier</h2>
+                    <p>Daftar mitra supplier PT XYZ</p>
+                </div>
+                <div class="filter-bar">
+                    <button id="btnTambahSupplier" class="btn-tambah">+ Tambah Supplier</button>
+                </div>
+                <div class="tabel-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama Supplier</th>
+                                <th>Telepon</th>
+                                <th>Alamat</th>
+                                <th>Jumlah Produk</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelBodySupplier"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ===== SECTION 4: MANAGE STOK ===== -->
+            <section id="menuManageStok" class="section" style="display:none;">
+                <div class="page-header">
+                    <h2>Manage Stok</h2>
+                    <p>Kelola stok dan data produk inventaris</p>
+                </div>
+
+                <div class="tab-bar">
+                    <button class="tab-btn aktif" data-tab="transaksi-baru">Transaksi Baru</button>
+                    <button class="tab-btn" data-tab="transaksi-stok">Transaksi Stok</button>
+                    <button class="tab-btn" data-tab="edit-stok">Edit Stok</button>
+                </div>
+
+                <!-- TAB 1: TRANSAKSI BARU -->
+                <div class="tab-content" id="tab-transaksi-baru">
+                    <div class="form-card">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="tbNama">Nama Produk</label>
+                                <input type="text" id="tbNama" placeholder="Contoh: Indomie Goreng">
+                            </div>
+                            <div class="form-group">
+                                <label for="tbKategori">Kategori</label>
+                                <select id="tbKategori">
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="makanan">Makanan</option>
+                                    <option value="minuman">Minuman</option>
+                                    <option value="kebersihan">Kebersihan</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tbSatuan">Satuan</label>
+                                <select id="tbSatuan">
+                                    <option value="">Pilih Satuan</option>
+                                    <option value="pcs">Pcs</option>
+                                    <option value="dus">Dus</option>
+                                    <option value="kg">Kg</option>
+                                    <option value="liter">Liter</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tbStok">Stok Awal</label>
+                                <input type="number" id="tbStok" min="0" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="tbMinStok">Stok Minimal</label>
+                                <input type="number" id="tbMinStok" min="0" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="tbHarga">Harga Satuan (Rp)</label>
+                                <input type="number" id="tbHarga" min="0" placeholder="0">
+                            </div>
+                            <div class="form-group form-full">
+                                <label for="tbSupplier">Supplier</label>
+                                <select id="tbSupplier">
+                                    <option value="">Pilih Supplier</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p id="pesanErrorTransaksiBaru" class="pesan-error"></p>
+                        <div class="form-actions">
+                            <button id="btnResetTransaksiBaru" class="btn-reset-form">Reset</button>
+                            <button id="btnSimpanTransaksiBaru" class="btn-tambah">Simpan Produk</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: TRANSAKSI STOK -->
+                <div class="tab-content" id="tab-transaksi-stok" style="display:none;">
+                    <div class="filter-bar">
+                        <select id="filterSupplierTS">
+                            <option value="">Semua Supplier</option>
+                        </select>
+                        <input type="text" id="searchTS" placeholder="Cari nama produk...">
+                    </div>
+                    <div class="tabel-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama Produk</th>
+                                    <th>Supplier</th>
+                                    <th>Kategori</th>
+                                    <th>Stok Saat Ini</th>
+                                    <th>Stok Minimal</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelBodyTS"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 3: EDIT STOK -->
+                <div class="tab-content" id="tab-edit-stok" style="display:none;">
+                    <div class="filter-bar">
+                        <input type="text" id="searchES" placeholder="Cari nama produk...">
+                    </div>
+                    <div class="tabel-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama Produk</th>
+                                    <th>Kategori</th>
+                                    <th>Harga Satuan</th>
+                                    <th>Stok Saat Ini</th>
+                                    <th>Stok Minimal</th>
+                                    <th>Supplier</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelBodyES"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SECTION 5: RIWAYAT TRANSAKSI ===== -->
+            <section id="menuRiwayat" class="section" style="display:none;">
+                <div class="page-header">
+                    <h2>Riwayat Transaksi</h2>
+                    <p>Log perubahan stok masuk dan keluar</p>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-date-group">
+                        <label class="filter-label">Dari</label>
+                        <input type="date" id="filterTglDari">
+                    </div>
+                    <div class="filter-date-group">
+                        <label class="filter-label">Sampai</label>
+                        <input type="date" id="filterTglSampai">
+                    </div>
+                    <select id="filterProdukRiwayat">
+                        <option value="">Semua Produk</option>
+                    </select>
+                    <select id="filterJenisRiwayat">
+                        <option value="">Semua Jenis</option>
+                        <option value="masuk">Barang Masuk</option>
+                        <option value="keluar">Barang Keluar</option>
+                    </select>
+                    <button id="btnResetRiwayat">Reset Filter</button>
+                </div>
+                <div class="tabel-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal & Waktu</th>
+                                <th>Produk</th>
+                                <th>Jenis</th>
+                                <th>Jumlah</th>
+                                <th>Stok Sebelum</th>
+                                <th>Stok Sesudah</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelBodyRiwayat"></tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ===== MODAL: TAMBAH SUPPLIER ===== -->
+    <div id="modalTambahSupplier" class="modal-backdrop">
+        <div class="modal-box">
+            <h3 id="judulModalSupplier">Tambah Supplier</h3>
+            <div class="form-group">
+                <label>Nama Supplier</label>
+                <input id="inputNamaSupplier" type="text" placeholder="Contoh: PT Maju Bersama">
+            </div>
+            <div class="form-group">
+                <label>Nomor Telepon</label>
+                <input id="inputTelpSupplier" type="text" placeholder="08xxxxxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>Alamat</label>
+                <input id="inputAlamatSupplier" type="text" placeholder="Kota / Alamat">
+            </div>
+            <p id="pesanErrorSupplier" class="pesan-error"></p>
+            <div class="modal-action">
+                <button id="btnSimpanSupplier" class="modal-yes">Simpan</button>
+                <button id="btnBatalSupplier" class="modal-no">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: TRANSAKSI STOK ===== -->
+    <div id="modalTransaksi" class="modal-backdrop">
+        <div class="modal-box">
+            <h3>Transaksi Stok</h3>
+            <div class="info-box" id="infoTransaksiProduk"></div>
+            <div class="form-group">
+                <label for="transaksiJenis">Jenis Transaksi</label>
+                <select id="transaksiJenis">
+                    <option value="">Pilih Jenis</option>
+                    <option value="masuk">Barang Masuk</option>
+                    <option value="keluar">Barang Keluar</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="transaksiJumlah">Jumlah</label>
+                <input type="number" id="transaksiJumlah" min="1" placeholder="Masukkan jumlah">
+            </div>
+            <div class="form-group">
+                <label for="transaksiKeterangan">Keterangan <span class="label-opsional">(opsional)</span></label>
+                <input type="text" id="transaksiKeterangan" placeholder="Contoh: Restock dari supplier">
+            </div>
+            <p id="pesanErrorTransaksi" class="pesan-error"></p>
+            <div class="modal-action">
+                <button id="btnSimpanTransaksi" class="modal-yes">Simpan</button>
+                <button id="btnBatalTransaksi" class="modal-no">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: EDIT STOK ===== -->
+    <div id="modalEditStok" class="modal-backdrop">
+        <div class="modal-box">
+            <h3>Edit Data Produk</h3>
+            <div class="info-box" id="infoEditStok"></div>
+            <div class="form-group">
+                <label for="esKategori">Kategori</label>
+                <select id="esKategori">
+                    <option value="">Pilih Kategori</option>
+                    <option value="makanan">Makanan</option>
+                    <option value="minuman">Minuman</option>
+                    <option value="kebersihan">Kebersihan</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="esHarga">Harga Satuan (Rp)</label>
+                <input type="number" id="esHarga" min="0" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label for="esMinStok">Stok Minimal</label>
+                <input type="number" id="esMinStok" min="0" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label for="esSupplier">Supplier</label>
+                <select id="esSupplier">
+                    <option value="">Pilih Supplier</option>
+                </select>
+            </div>
+            <p id="pesanErrorEditStok" class="pesan-error"></p>
+            <div class="modal-action">
+                <button id="btnSimpanEditStok" class="modal-yes">Simpan</button>
+                <button id="btnBatalEditStok" class="modal-no">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: KONFIRMASI ===== -->
+    <div id="modalKonfirmasi" class="modal-backdrop">
+        <div class="modal-box">
+            <h3 id="judulKonfirmasi">Konfirmasi</h3>
+            <p id="modalPesan">Apakah anda yakin?</p>
+            <div class="modal-action">
+                <button id="btnModalYes" class="modal-yes">Ya</button>
+                <button id="btnModalNo" class="modal-no">Tidak</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

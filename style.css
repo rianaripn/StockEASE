@@ -1,0 +1,659 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1a1a2e;
+    background-color: #F5F4ED;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100vh;
+}
+
+/* ===================== SIDEBAR ===================== */
+
+.sidebar {
+    background-color: #FFFFFF;
+    padding: 1.5rem 1rem;
+    border-right: solid 1px #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar .brand {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1a1a2e;
+    padding-bottom: 1rem;
+    font-weight: 600;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    padding: 8px 12px;
+    color: #185FA5;
+    border-radius: 8px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f0f2f5;
+    color: #1a1a2e;
+}
+
+.sidebar ul li.active a {
+    background-color: #e6f1fb;
+    color: #185FA5;
+    font-weight: 500;
+}
+
+/* ===================== CONTENT ===================== */
+
+.content {
+    padding: 2rem;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===================== PAGE HEADER ===================== */
+
+.page-header { font-size: 1.5rem; font-weight: 500; color: #1a1a2e; }
+.page-header p { font-size: 0.875rem; color: #64748b; margin-top: 4px; }
+
+/* ===================== ALERT ===================== */
+
+.alert {
+    background-color: #FAEEDA;
+    border: 1px solid #EF9F27;
+    padding: 10px 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #854f0b;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.alert.danger {
+    background-color: #e53e3e;
+    border: 1px solid #e53e3e;
+    color: #FFFFFF;
+}
+
+/* ===================== STATS ===================== */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.stat-card .stat-label { font-size: 0.9rem; color: #64748b; padding-bottom: 6px; }
+.stat-card .stat-value { font-size: 1.6rem; font-weight: 600; }
+
+/* ===================== FILTER BAR ===================== */
+
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-bar select,
+.filter-bar input[type="text"] {
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    height: 36px;
+    background-color: #FFFFFF;
+    color: #1a1a2e;
+    font-size: 0.875rem;
+    outline: none;
+}
+
+.filter-bar select:focus,
+.filter-bar input[type="text"]:focus {
+    border-color: #185FA5;
+}
+
+.filter-bar select { cursor: pointer; }
+
+/* ===================== TOMBOL-TOMBOL ===================== */
+
+#btnResetFilter,
+#btnResetSearch {
+    height: 36px;
+    padding: 0 14px;
+    background-color: #F5F4ED;
+    border: 1px solid #64748b;
+    color: #64748b;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.15s;
+}
+
+#btnResetFilter:hover,
+#btnResetSearch:hover {
+    background-color: #e6f1fb;
+    color: #185FA5;
+    border-color: #185FA5;
+}
+
+.btn-tambah {
+    height: 36px;
+    padding: 0 14px;
+    background-color: #185FA5;
+    border: none;
+    color: #FFFFFF;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.15s;
+    margin-left: auto; /* Dorong ke kanan */
+}
+
+.btn-tambah:hover {
+    background-color: #1a4f85;
+}
+
+.btnHapus {
+    height: 32px;
+    padding: 0 12px;
+    color: #e53e3e;
+    background-color: #FFFFFF;
+    border: 1px solid #e53e3e;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+}
+
+.btnHapus:hover {
+    background-color: #e53e3e;
+    color: #FFFFFF;
+}
+
+/* ===================== TABEL ===================== */
+
+.tabel-wrap {
+    background-color: #FFFFFF;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead { background-color: #F8FAFC; }
+
+th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+    color: #64748b;
+}
+
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f2f5;
+    color: #1a1a2e;
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background-color: #f8fafc; }
+
+/* ===================== BADGE STATUS ===================== */
+
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.badge-aman {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.badge-danger {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* ===================== TOMBOL MANAGE STOK ===================== */
+
+.aksi-stok {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-stok {
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid;
+    transition: all 0.15s;
+}
+
+.btn-tambah-stok {
+    background-color: #dcfce7;
+    color: #166534;
+    border-color: #86efac;
+}
+
+.btn-tambah-stok:hover {
+    background-color: #166534;
+    color: #FFFFFF;
+}
+
+.btn-kurangi-stok {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border-color: #fca5a5;
+}
+
+.btn-kurangi-stok:hover {
+    background-color: #b91c1c;
+    color: #FFFFFF;
+}
+
+/* ===================== MODAL ===================== */
+
+.modal-backdrop {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-backdrop.aktif {
+    display: flex;
+}
+
+.modal-box {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 440px;
+    max-width: 95vw;
+}
+
+.modal-box h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: #1a1a2e;
+}
+
+.modal-action {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.modal-yes,
+.modal-no {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.modal-yes {
+    background-color: #185FA5;
+    color: #FFFFFF;
+    border: none;
+}
+
+.modal-yes:hover {
+    background-color: #1a4f85;
+}
+
+.modal-no {
+    background-color: #F5F4ED;
+    color: #64748b;
+    border: 1px solid #64748b;
+}
+
+.modal-no:hover {
+    background-color: #e6f1fb;
+    color: #185FA5;
+    border-color: #185FA5;
+}
+
+/* ===================== FORM DALAM MODAL ===================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 0.9rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select {
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #1a1a2e;
+    background-color: #FFFFFF;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #185FA5;
+}
+
+.pesan-error {
+    color: #e53e3e;
+    font-size: 0.82rem;
+    min-height: 18px;
+}
+
+/* ===================== TAB BAR ===================== */
+
+.tab-bar {
+    display: flex;
+    gap: 4px;
+    background-color: #f1f5f9;
+    padding: 4px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.tab-btn {
+    padding: 8px 22px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    background-color: transparent;
+    transition: all 0.15s;
+}
+
+.tab-btn:hover {
+    color: #185FA5;
+}
+
+.tab-btn.aktif {
+    background-color: #FFFFFF;
+    color: #185FA5;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===================== FORM CARD (TAB 1) ===================== */
+
+.form-card {
+    background-color: #FFFFFF;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.75rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.5rem;
+}
+
+.form-full {
+    grid-column: span 2;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #f0f2f5;
+}
+
+.btn-reset-form {
+    height: 36px;
+    padding: 0 14px;
+    background-color: #F5F4ED;
+    border: 1px solid #64748b;
+    color: #64748b;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.15s;
+}
+
+.btn-reset-form:hover {
+    background-color: #e6f1fb;
+    color: #185FA5;
+    border-color: #185FA5;
+}
+
+/* ===================== TOMBOL AKSI TRANSAKSI (TAB 2) ===================== */
+
+.btn-aksi-transaksi {
+    height: 32px;
+    padding: 0 14px;
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.btn-aksi-transaksi:hover {
+    background-color: #166534;
+    color: #FFFFFF;
+}
+
+/* ===================== INFO BOX (MODAL) ===================== */
+
+.info-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* ===================== TOMBOL TRANSAKSI ===================== */
+
+.btn-transaksi {
+    height: 36px;
+    padding: 0 14px;
+    background-color: #166534;
+    border: none;
+    color: #FFFFFF;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.15s;
+}
+
+.btn-transaksi:hover {
+    background-color: #14532d;
+}
+
+/* ===================== FILTER DATE GROUP ===================== */
+
+.filter-date-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.filter-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.filter-bar input[type="date"] {
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    height: 36px;
+    background-color: #FFFFFF;
+    color: #1a1a2e;
+    font-size: 0.875rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-bar input[type="date"]:focus {
+    border-color: #185FA5;
+}
+
+/* ===================== LABEL OPSIONAL ===================== */
+
+.label-opsional {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+/* ===================== TOMBOL EDIT ===================== */
+
+.btnEdit {
+    height: 32px;
+    padding: 0 12px;
+    color: #185FA5;
+    background-color: #FFFFFF;
+    border: 1px solid #185FA5;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+}
+
+.btnEdit:hover {
+    background-color: #185FA5;
+    color: #FFFFFF;
+}
+
+.aksi-col {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* ===================== BADGE RIWAYAT ===================== */
+
+.badge-tambah {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.badge-kurangi {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+
+/* ===================== TOAST NOTIFICATION ===================== */
+
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 300;
+    pointer-events: none;
+    max-width: 320px;
+}
+
+.toast.tampil {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-sukses {
+    background-color: #166534;
+}
+
+.toast-hapus {
+    background-color: #b91c1c;
+}
