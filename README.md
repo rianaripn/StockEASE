@@ -112,10 +112,10 @@ Proyek ini adalah implementasi **front-end only** tanpa backend atau database ek
 
 ## 👨‍💻 Developer
 
-**Rian** — Computer Science Student
+**Rian Arip Nugraha** 
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/username)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/username)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/rian-arip-nugraha-929908213/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/rianaripn)
 
 ---
 
