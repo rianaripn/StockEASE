@@ -3,12 +3,17 @@
 **StockEase** adalah aplikasi manajemen inventaris berbasis web yang dibangun dengan HTML, CSS, dan JavaScript murni (Vanilla JS). Aplikasi ini dirancang untuk membantu pengelolaan stok produk, data supplier, dan riwayat transaksi secara sederhana langsung di browser.
 
 ---
+## 🔗 Live Demo
+[https://stock-ease-tawny.vercel.app/](https://stock-ease-tawny.vercel.app/)
 
 ## 🖼️ Preview
 
-> _Tambahkan screenshot aplikasi di sini_
->
-> Contoh: `![Dashboard StockEase](screenshots/dashboard.png)`
+<img width="1919" height="966" alt="gambar" src="https://github.com/user-attachments/assets/c6849809-026d-4e80-82dd-10025513ed1d" />
+<img width="1919" height="967" alt="gambar" src="https://github.com/user-attachments/assets/e98b87b9-bdd4-42ba-bab5-b6ed8967dedd" />
+<img width="1919" height="966" alt="gambar" src="https://github.com/user-attachments/assets/c523af6e-f750-403d-a019-7783b376b497" />
+<img width="1919" height="966" alt="gambar" src="https://github.com/user-attachments/assets/6985d661-d075-4a03-9afc-d7ab4f92e48c" />
+<img width="1919" height="966" alt="gambar" src="https://github.com/user-attachments/assets/8bb752bf-e9b7-418d-9c27-784961b3ab19" />
+
 
 ---
 
